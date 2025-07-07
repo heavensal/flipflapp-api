@@ -18,11 +18,11 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV["NEON_DB"] %>
 
 
 development:
   <<: *default
-  database: ENV["NEON_DB"]
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -81,9 +81,6 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: flipflapp_api_production
-    username: flipflapp_api
-    password: <%= ENV["FLIPFLAPP_API_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: flipflapp_api_production_cache
