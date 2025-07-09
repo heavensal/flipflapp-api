@@ -15,11 +15,10 @@ Rails.application.routes.draw do
           get :me
         end
       end
-      resources :events, only: [ :index, :show, :create, :update, :destroy ] do
-        resources :event_teams, only: [ :index, :update, :destroy ] do
-          resources :event_participants, only: [ :index, :create, :destroy ]
-        end
-      end
+      resources :events, only: [ :index, :show, :create, :update, :destroy ]
+      resources :event_teams, only: [ :update ]
+      resources :event_participants, only: [ :create, :destroy ]
+      resources :friendships, only: [ :index, :create, :update, :destroy ]
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
