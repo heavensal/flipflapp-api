@@ -52,7 +52,8 @@ end
 gem "jsonapi-serializer"
 
 gem "devise"
-gem "devise-jwt"
+# gem "devise-jwt"
+gem "devise_token_auth"
 # gem "omniauth"
 # gem "omniauth-google-oauth2"
 
