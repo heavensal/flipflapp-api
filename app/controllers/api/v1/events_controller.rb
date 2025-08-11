@@ -1,16 +1,21 @@
 class Api::V1::EventsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   # GET /api/v1/events
   def index
-    @events = Event.all
-    render json: @events, status: :ok
+    @events = Event.upcoming.includes(:user, :event_participants)
+    render json: Event::IndexSerializer.new(@events).serializable_hash.to_json, status: :ok
   end
 
   # GET /api/v1/events/:id
   def show
-    @event = Event.find(params[:id])
-    render json: @event, status: :ok
+    @event = Event.includes(
+      :user,
+      :event_teams,
+      event_participants: :user
+    ).find(params[:id])
+
+    render json: Event::ShowSerializer.new(@event).serializable_hash.to_json, status: :ok
   end
 
   # POST /api/v1/events
