@@ -7,11 +7,12 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "*"
+    origins "http://localhost:4999", "https://flipflapp.fr"
 
     resource "*",
       headers: :any,
       methods: [ :get, :post, :put, :patch, :delete, :options, :head ],
-      expose: [ :Authorization, "access-token", "expiry", "token-type", "uid", "client" ]
+      expose: [ :Authorization, "access-token", "expiry", "token-type", "uid", "client" ],
+      credentials: true
   end
 end
