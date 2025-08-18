@@ -1,0 +1,2 @@
+class BetaTester < ApplicationRecord
+end
