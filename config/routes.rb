@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       # Define your API routes here
       # Example: resources :posts
       # resources :posts, only: [:index, :show, :create, :update, :destroy]
+      resources :beta_testers, only: [ :index, :show, :create ]
       resources :users, only: [ :index, :show ] do
         collection do
           get :me
