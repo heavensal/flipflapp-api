@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "http://localhost:4999", "https://flipflapp.fr"
+    origins "http://localhost:4999", /https:\/\/([a-zA-Z0-9-]+\.)*flipflapp\.fr/
 
     resource "*",
       headers: :any,
